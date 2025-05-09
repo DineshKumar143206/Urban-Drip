@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{base::common(~{::#content},'')}">
+<head>
+<meta charset="UTF-8">
+<title>Urban Drip</title>
+
+</head>
+<body>
+	<div id="content">
+
+		<div id="heroCarousel" class="carousel slide mb-5"
+			data-bs-ride="carousel" data-bs-interval="3000">
+			<div class="carousel-inner">
+				<div class="carousel-item active position-relative">
+					<img th:src="@{'/img/B1.jpg'}" class="d-block w-100" alt="Banner 1">
+					<div class="carousel-caption-clean-a">
+						<h1>Welcome to Urban Drip</h1>
+						<p>Unfold your drip life with the latest styles</p>
+						<a href="/products" class="btn btn-danger">Shop Now</a>
+					</div>
+				</div>
+				<div class="carousel-item position-relative">
+					<img th:src="@{'/img/B3.jpg'}" class="d-block w-100" alt="Banner 3">
+					<div class="carousel-caption-clean-b">
+						<h1>Exclusive Offers</h1>
+						<p>Grab the best deals before they’re gone!</p>
+						<a href="/products" class="btn btn-danger">Shop Deals</a>
+					</div>
+				</div>
+			</div>
+			<button class="carousel-control-prev" type="button"
+				data-bs-target="#heroCarousel" data-bs-slide="prev">
+				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">Previous</span>
+			</button>
+			<button class="carousel-control-next" type="button"
+				data-bs-target="#heroCarousel" data-bs-slide="next">
+				<span class="carousel-control-next-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">Next</span>
+			</button>
+		</div>
+
+
+
+
+		<!-- Category -->
+		<div class="container-fluid mb-5 p-3">
+			<h2 class="text-center mb-4">Shop by Category</h2>
+			<div class="row g-4">
+				<div class="col-6 col-sm-4 col-md-3 col-lg-2"
+					th:each="category : ${categories}">
+					<div class="card shadow category-card p-2 text-center">
+						<a th:href="@{'/products?category='+${category.name}}"
+							class="text-decoration-none text-dark"> <img
+							th:src="@{'/img/category_img/'+${category.imageName}}"
+							alt="[[${category.name}]]">
+							<p>[[${category.name}]]</p>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Latest Products -->
+		<div class="container-fluid bg-light py-5 p-3">
+			<h2 class="text-center mb-4">Latest Products</h2>
+			<div class="row g-4">
+				<div class="col-12 col-sm-6 col-md-3"
+					th:each="product : ${products}">
+					<div class="card shadow product-card p-2 text-center">
+						<a th:href="@{'/product_view/'+${product.id}}"
+							class="text-decoration-none text-dark"> <img
+							th:src="@{'/img/product_img/'+${product.image}}"
+							alt="[[${product.name}]]">
+							<p>[[${product.name}]]</p>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+	</div>
+</body>
+</html>
