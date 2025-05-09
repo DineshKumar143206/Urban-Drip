@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{base::common(~{::#content},'Login |')}">
+<head>
+<meta charset="UTF-8">
+<title>Login</title>
+</head>
+<body>
+	<div id="content">
+		<div class="container mt-5 ">
+			<div class="row justify-content-center">
+				<div class="col-lg-5 ">
+					<img alt="" src="img/login_banner.jpg" class="login-banner shadow mb-5">
+				</div>
+				<div class="col-lg-5">
+					<div class="card shadow p-4">
+						<div class="card-header text-center">
+							<p>Login to Your Account</p>
+						</div>
+
+						<div th:if="${param.error}" class="alert alert-danger text-center">
+							[[${session.SPRING_SECURITY_LAST_EXCEPTION.message}]]</div>
+						<div th:if="${param.logout}"
+							class="alert alert-success text-center">Successfully logged
+							out</div>
+
+						<div class="card-body">
+							<form action="/authenticating" method="post">
+								<div class="mb-3">
+									<label class="form-label">Email</label> <input required
+										class="form-control" name="username" type="email">
+								</div>
+								<div class="mb-3">
+									<label class="form-label">Password</label> <input required
+										class="form-control" name="password" type="password">
+								</div>
+								<button type="submit" class="btn btn-login col-2 offset-5 text-white">Login</button>
+							</form>
+						</div>
+
+						<div class="card-footer text-center">
+							<a href="/forgot_password" class="text-decoration-none">Forgot
+								Password ?</a> <br> Don't have an account? <a href="/register"
+								class="text-decoration-none">Create Account</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</body>
+</html>
